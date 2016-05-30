@@ -1,0 +1,24 @@
+{
+  "name": "dot-cli",
+  "version": "0.0.1",
+  "description": "A command-line wrapper for the doT templating engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js --template=\"test/*.dot\" --json=\"test/*.json\" --output=\"test/$1 $2.txt\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiocbinbutter/dot-cli.git"
+  },
+  "keywords": [
+    "doT",
+    "dot.js",
+    "template"
+  ],
+  "author": "Fabio Beltramini",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/fabiocbinbutter/dot-cli/issues"
+  },
+  "homepage": "https://github.com/fabiocbinbutter/dot-cli#readme"
+}
