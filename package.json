@@ -23,5 +23,10 @@
   "bugs": {
     "url": "https://github.com/fabiocbinbutter/dot-cli/issues"
   },
-  "homepage": "https://github.com/fabiocbinbutter/dot-cli#readme"
+  "homepage": "https://github.com/fabiocbinbutter/dot-cli#readme",
+  "dependencies": {
+    "dot": "^1.0.3",
+    "glob": "^7.0.3",
+    "minimist": "^1.2.0"
+  }
 }
