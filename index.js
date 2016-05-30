@@ -1,5 +1,10 @@
+#! /usr/bin/env node
 
-var cliArgs = require('minimist')(process.argv.slice(2));
+var cliArgs = require('minimist')(process.argv.slice(
+		process.argv[0]=="dot-cli"
+		?1 //e.g. dot-cli --bla
+		:2 //e.g. node index.js --bla
+	));
 var glob=require("glob");
 var fs=require("fs");
 var path=require("path");
@@ -10,8 +15,8 @@ var jsonGlob=cliArgs.json || cliArgs.j;
 var outpattern=cliArgs.output || cliArgs.o;
 var breakOnErrors=cliArgs.e;
 
-if(!templateGlob){throw "template argument is required"}
-if(!jsonGlob){throw "json argument is required"}
+if(!templateGlob){console.error("template argument is required"); process.exit(1);}
+if(!jsonGlob){console.error("json argument is required"); process.exit(1);}
 
 var globOptions=cliArgs;
 
@@ -20,8 +25,8 @@ var encoding=cliArgs.encoding||'utf8';
 var tFiles=glob.sync(templateGlob,globOptions);
 var jFiles=glob.sync(jsonGlob,globOptions);
 
-if(!tFiles.length){console.warn("No template files were matched.")}
-if(!jFiles.length){console.warn("No json files were matched.")}
+if(!tFiles.length){console.warn("Warning: No template files were matched.")}
+if(!jFiles.length){console.warn("Warning: No json files were matched.")}
 
 tFiles.forEach(function(t){
 		var tFile=fs.readFileSync(t,{encoding:encoding});
