@@ -1,6 +1,6 @@
 {
   "name": "dot-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A command-line wrapper for the doT templating engine",
   "main": "index.js",
   "bin": {
