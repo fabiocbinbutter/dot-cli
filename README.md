@@ -1,8 +1,9 @@
 # dot-cli
 A command-line wrapper for the doT templating engine.
 
-* Example stdout usage: `node index.js template="template.dot" json="data.json"`
-* Example batch usage: `node index.js template="template.dot" json="data/*.json" output="out/%t %j.html"`
+* Install `npm install dot-cli`
+* Example stdout usage: `dot-cli template="template.dot" json="data.json"`
+* Example batch usage: `dot-cli template="template.dot" json="data/*.json" output="out/%t %j.html"`
 
 #Arguments
 * `--template=<glob>` or `-t <glob>` . A glob specifying your dot file(s) (Required)
