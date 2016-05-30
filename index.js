@@ -50,6 +50,13 @@ tFiles.forEach(function(t){
 					}
 				if(outpattern){
 						var outpath=outpattern.replace("%t",tFrag).replace("%j",jFrag)
+						outpath.split('/').slice(0,-1).reduce(function(accum,x,i){
+								accum.push(x); var path=accum.join('/')
+								//e.g. for a/b/c.txt => path: "a","a/b"
+								//e.g. for /a/b/c.txt => path: "", "/a", "/a/b"
+								if(path && !fs.existsSync(path)){fs.mkdirSync(path)}
+								return accum;
+							},[])
 						fs.writeFileSync(outpath,output);
 					}else{
 						process.stdout.write(output);
