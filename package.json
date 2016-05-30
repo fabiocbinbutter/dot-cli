@@ -1,10 +1,13 @@
 {
   "name": "dot-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A command-line wrapper for the doT templating engine",
   "main": "index.js",
+  "bin": {
+    "dot-cli": "index.js"
+  },
   "scripts": {
-    "test": "node index.js --template=\"test/*.dot\" --json=\"test/*.json\" --output=\"test/%t-%j.txt\""
+    "test": "dot-cli --template=\"test/*.dot\" --json=\"test/*.json\" --output=\"test/%t-%j.txt\""
   },
   "repository": {
     "type": "git",
