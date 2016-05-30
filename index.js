@@ -7,7 +7,7 @@ var dot=require("dot");
 
 var templateGlob=cliArgs.template || cliArgs.t;
 var jsonGlob=cliArgs.json || cliArgs.j;
-var outpattern=cliArgs.output || cliArgs.o || "%t %j.txt";
+var outpattern=cliArgs.output || cliArgs.o;
 var breakOnErrors=cliArgs.e;
 
 if(!templateGlob){throw "template argument is required"}
@@ -43,8 +43,12 @@ tFiles.forEach(function(t){
 						if(breakOnErrors){process.exit(1);}
 						return;
 					}
-				var outpath=outpattern.replace("%t",tFrag).replace("%j",jFrag)
-				fs.writeFileSync(outpath,output);
+				if(outpattern){
+						var outpath=outpattern.replace("%t",tFrag).replace("%j",jFrag)
+						fs.writeFileSync(outpath,output);
+					}else{
+						process.stdout.write(output);
+					}
 			});
 	});
 
