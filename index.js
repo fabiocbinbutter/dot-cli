@@ -7,7 +7,9 @@ var dot=require("dot");
 
 var templateGlob=cliArgs.template || cliArgs.t;
 var jsonGlob=cliArgs.json || cliArgs.j;
-var outpattern=cliArgs.output || cliArgs.o || "$t $j.txt";
+var outpattern=cliArgs.output || cliArgs.o || "%t %j.txt";
+var breakOnErrors=cliArgs.e;
+
 if(!templateGlob){throw "template argument is required"}
 if(!jsonGlob){throw "json argument is required"}
 
@@ -24,14 +26,24 @@ if(!jFiles.length){console.warn("No json files were matched.")}
 tFiles.forEach(function(t){
 		var tFile=fs.readFileSync(t,{encoding:encoding});
 		var tFrag=filename(t)
-		var template=dot.template(tFile);
+		try{
+				var template=dot.template(tFile);
+			}catch(e){
+				console.error(e);
+				if(breakOnErrors){process.exit(1);}
+				return;
+			}
 		jFiles.forEach(function(j){
 				var jFile=fs.readFileSync(j,{encoding:encoding});
 				var jFrag=filename(j);
-				var output=template(jFile);
-				console.log(tFrag,jFrag);
-				var outpath=outpattern.replace("$t",tFrag).replace("$j",jFrag)
-				console.log(outpath);
+				try{
+						var output=template(JSON.parse(jFile));
+					}catch(e){
+						console.error(e);
+						if(breakOnErrors){process.exit(1);}
+						return;
+					}
+				var outpath=outpattern.replace("%t",tFrag).replace("%j",jFrag)
 				fs.writeFileSync(outpath,output);
 			});
 	});
