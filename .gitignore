@@ -1,3 +1,6 @@
+/text/out
+/test/out/*
+
 # Logs
 logs
 *.log
