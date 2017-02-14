@@ -7,7 +7,7 @@
     "dot-cli": "index.js"
   },
   "scripts": {
-    "test": "dot-cli --template=\"test/*.dot\" --json=\"test/*.json\" --output=\"test/%t-%j.txt\""
+    "test": "node index.js --template=\"test/*.dot\" --json=\"test/*.json\" --output=\"test/%t-%j.txt\""
   },
   "repository": {
     "type": "git",
