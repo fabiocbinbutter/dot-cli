@@ -60,7 +60,7 @@ tFiles.forEach(function(t){
 			writeout(outpattern, "index.", "", "module.exports={\n"
 					+tFiles.map(t=>
 							'"'+escapeStringLiteral(filename(t))+'":require("./'+escapeStringLiteral(filename(t))+'.js")'
-						).join("\n")+"\n}"
+						).join(",\n")+"\n}"
 				)
 		}
 
